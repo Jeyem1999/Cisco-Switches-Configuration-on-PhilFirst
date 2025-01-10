@@ -111,3 +111,7 @@ int fa 0/23
 switchport mode trunk
 int fa 0/24
 switchport mode trunk
+end
+
+##SW2 CONFIGURATION
+
