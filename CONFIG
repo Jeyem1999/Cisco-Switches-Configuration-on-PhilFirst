@@ -1,0 +1,113 @@
+##SW1 CONFIGURATION
+
+conf t
+
+hostname SW1
+enable secret pass
+service password-encryption
+no logging console
+no ip domain-lookup
+line console 0
+password pass
+login
+exec-timeout 0 0
+line vty 0 14
+password pass
+login
+exec-timeout 0 0
+end
+
+conf t
+
+int vlan 1
+no shut
+ip address 10.10.1.0 255.255.255.0
+description MGMT PORT
+int vlan 4
+no shut
+ip address 192.20.4.0 255.255.255.0
+description HR ACCTG PRINTER BIOMETRIC CCTV
+int vlan 10
+no shut
+ip address 10.130.30.0 255.255.255.0
+description SERVER ROOM
+int vlan 17
+no shut
+ip address 172.16.17.0 255.255.255.0
+description FORTIAP
+int vlan 18
+no shut
+ip address 172.16.18.0 255.255.255.0
+description CISCO AP
+int vlan 19
+no shut
+ip address 172.16.19.0 255.255.255.0
+description IP PHONES
+int vlan 20
+no shut
+ip address 172.16.20.0 255.255.255.0
+description AGENTS ROOM
+int vlan 21
+no shut
+ip address 172.16.21.0 255.255.255.0
+description MEETING ROOM
+int vlan 23
+no shut
+ip address 172.16.23.0 255.255.255.0
+description EXECUTIVE ROOM 
+int vlan 30
+no shut
+ip address 172.16.30.0 255.255.255.0
+description MIS IT ROOM
+end
+
+conf t
+
+vlan 1
+name MGMT PORT
+vlan 4
+name HR ACCTG PRINTER BIOMETRIC CCTV
+vlan 10
+name SERVER ROOM
+vlan 17
+name FORTIAP
+vlan 18
+name CISCO AP
+vlan 19
+name IP PHONES
+vlan 20
+name AGENTS ROOM
+vlan 21
+name MEETING ROOM
+vlan 23
+name EXECUTIVE ROOM
+vlan 30
+name MIT IT ROOM
+int range fa 0/2 to fa 0/4
+switchport mode access
+switchport access vlan 23
+int range fa 0/5 to fa 0/7
+switchport mode access
+switchport access vlan 4
+int range fa 0/8 to fa 0/9
+switchport mode access
+switchport access vlan 21
+int range fa 0/10 to fa 0/11
+switchport mode access
+switchport access vlan 21
+int fa 0/12
+switchport mode access
+switchport access vlan 21
+int fa 0/13
+switchmode port access
+swithport access vlan 21
+int fa 0/20
+switchport mode trunk
+int fa 0/21
+switchport mode trunk
+int fa 0/22
+switchport mode trunk
+int fa 0/23
+switchport mode trunk
+int fa 0/24
+switchport mode trunk
