@@ -454,6 +454,113 @@ Overwrite file [startup-config].... (Y/N)[N] ?Y
 
 Copy succeeded 
 
- 
 
- 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+!!!PFIC Configuration UPDATED!!!!
+
+##Switch 1 Configuration##
+
+hostname SW1
+Conf t 
+SW1(config)#int vlan 1 
+SW1(config-if)#name MGMT_PORT 
+SW1(config-if)#exit
+SW1(config)#int vlan 10 
+SW1(config-if)#name SERVER_ROOM 
+SW1(config-if)#exit 
+SW1(config)#int vlan 17 
+SW1(config-if)#name FORTIAP 
+SW1(config-if)#exit 
+SW1(config)#int vlan 20 
+SW1(config-if)#name AGENTS 
+SW1(config-if)#exit 
+SW1(config)#interface vlan 30 
+SW1(config-if)#name MIS_IT_ROOM 
+SW1(config-if)#exit  
+SW1(config)#int vlan 50 
+SW1(config-if)#name CISCO_AP 
+SW1(config-if)#ex 
+SW1(config)#interface vlan 60 
+SW1(config-if)#name IP_PHONE 
+SW1(config-if)#exit  
+SW1(config)#int vlan 70 
+SW1(config-if)#name MEETING_ROOM 
+SW1(config-if)#exit  
+SW1(config)#interface vlan 80 
+SW1(config-if)#name Executive_Room_123   
+SW1(config-if)#ex 
+SW1(config)#int vlan 40 
+SW1(config-if)#name OPERATION 
+SW1(config-if)#exit
+SW1(config)#int vlan 110 
+SW1(config-if)#name Cisco_Operations 
+SW1(config-if)#exit  
+SW1(config)#interface vlan 120
+SW1(config-if)#name PhilFirst_Operations  
+SW1(config-if)#ex 
+SW1(config)#int vlan 130
+SW1(config-if)#name GUESTS
+SW1(config-if)#exit 
+SW1(config)#int vlan 210
+SW1(config-if)#name FortiAP2
+SW1(config-if)#exit 
+
+SW1(config)#int gi1
+SW1(config-if)#switchport mode access  
+SW1(config-if)#switchport access vlan 1 
+SW1(config-if)#exit 
+SW1(config)#int range GigabitEthernet 2-4 
+SW1(config-if-range)#switchport mode access  
+SW1(config-if-range)#switchport access vlan 80 
+SW1(config-if-range)#exit 
+SW1(config)#int range GigabitEthernet 5-7 
+SW1(config-if-range)#switchport mode access 
+SW1(config-if-range)#switchport access vlan 40 
+SW1(config-if-range)#ex
+SW1(config)#int GigabitEthernet19 
+SW1(config-if)#switchport mode trunk  
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#spanning-tree portfast  
+SW1(config-if)#description FW_TRUNKPORT2
+SW1(config)#int GigabitEthernet 20 
+SW1(config-if)#description SW2_TRUNKPORT 
+SW1(config-if)#switchport mode trunk
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#spanning-tree portfast
+SW1(config-if)#exit 
+SW1(config)#int GigabitEthernet 21 
+SW1(config-if)#description SERVERFARM_TRUNKPORT 
+SW1(config-if)#switchport mode trunk  
+SW1(config-if)#switchport trunk allowed vlan 10 
+SW1(config-if)#spanning-tree portfast 
+SW1(config-if)#exit 
+SW1(config)#int GigabitEthernet 22 
+SW1(config-if)#switchport mode trunk  
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#description SW3_TRUNKPORT 
+SW1(config-if)#spanning-tree portfast 
+SW1(config-if)#exit 
+SW1(config)#interface GigabitEthernet23 
+SW1(config-if)#switchport mode trunk  
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#description FW_TRUNKPORT 
+SW1(config-if)#spanning-tree portfast 
+SW1(config-if)#exit 
+SW1(config)#interface GigabitEthernet24 
+SW1(config-if)#switchport mode trunk  
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#description SW4_TRUNKPORT 
+SW1(config-if)#spanning-tree portfast 
+SW1(config-if)#end
+
+SW1#wr mem 
+Overwrite file [startup-config].... (Y/N)[N] ?Y 
+Copy succeeded 
+
+=============================================================================================
+
+##Switch 2 Configuration##
+
+hostname SW2
