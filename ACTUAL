@@ -230,3 +230,76 @@ SW3#wr mem
 Overwrite file [startup-config].... (Y/N)[N] ?Y 
 Copy succeeded 
 
+=======================================================================================================
+
+##Switch 4 Configuration
+
+hostname SW4
+SW4#conf t
+SW4(config)#int vlan 1
+SW4(config-if)#name MGMT_PORT
+SW4(config-if)#ex
+SW4(config)#int vlan 10
+SW4(config-if)#name SERVER
+SW4(config-if)#ex
+SW4(config)#int vlan 20
+SW4(config-if)#name AGENTS_ROOM
+SW4(config-if)#ex
+SW$(config)#int vlan 30
+SW4(config-if)#name MIS_IT_ROOM
+SW4(config-if)#ex
+SW4(config)#int vlan 40
+SW4(config-if)#name OPERATION
+SW4(config-if)#ex
+SW4(config)#int range GigabitEthernet2-11
+SW4(config-if-range)#switchport mode access  
+SW4(config-if-range)#switchport access vlan 40
+SW4(config-if-range)#spanning-tree portfast   
+SW4(config-if-range)#description PRINTERS
+SW4(config-if-range)#ex 
+SW4(config)#int range GigabitEthernet12-13
+SW4(config-if-range)#switchport mode access  
+SW4(config-if-range)#switchport access vlan 30
+SW4(config-if-range)#spanning-tree portfast   
+SW4(config-if-range)#description MIS IT ROOM
+SW4(config-if-range)#ex 
+SW4(config)#int GigabitEthernet14
+SW4(config-if-range)#switchport mode access  
+SW4(config-if-range)#switchport access vlan 10
+SW4(config-if-range)#spanning-tree portfast   
+SW4(config-if-range)#description SERVER
+SW4(config-if-range)#ex 
+SW4(config)#int GigabitEthernet15
+SW4(config-if-range)#switchport mode access  
+SW4(config-if-range)#switchport access vlan 40
+SW4(config-if-range)#spanning-tree portfast   
+SW4(config-if-range)#description SERVER
+SW4(config-if-range)#ex 
+SW4(config)#int GigabitEthernet16
+SW4(config-if-range)#switchport mode access  
+SW4(config-if-range)#switchport access vlan 20
+SW4(config-if-range)#spanning-tree portfast   
+SW4(config-if-range)#description AGENTS RM
+SW4(config-if-range)#ex 
+SW4(config)#int GigabitEthernet17
+SW4(config-if-range)#switchport mode access  
+SW4(config-if-range)#switchport access vlan 40
+SW4(config-if-range)#spanning-tree portfast   
+SW4(config-if-range)#description HR/ADMIN RM
+SW4(config-if-range)#ex 
+SW4(config)#int GigabitEthernet18
+SW4(config-if-range)#switchport mode access  
+SW4(config-if-range)#switchport access vlan 40
+SW4(config-if-range)#spanning-tree portfast   
+SW4(config-if-range)#description BIOMETRICS
+SW4(config-if-range)#ex 
+SW4(config)#int range GigabitEthernet19-23
+SW4(config-if-range)#shut
+SW4(config-if-range)#ex
+SW4(config)#int GigabitEthernet24 
+SW4(config-if)#switchport mode trunk  
+SW4(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100,110,120,130,210
+SW4(config-if)#spanning-tree portfast  
+SW4(config-if)#description TRUNK_TO_SW1 
+SW4(config-if)#end
+SW4#wr mem 
