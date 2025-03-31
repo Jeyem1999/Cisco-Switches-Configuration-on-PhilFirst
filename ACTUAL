@@ -251,6 +251,7 @@ SW4(config-if)#ex
 SW4(config)#int vlan 40
 SW4(config-if)#name OPERATION
 SW4(config-if)#ex
+
 SW4(config)#int range GigabitEthernet2-11
 SW4(config-if-range)#switchport mode access  
 SW4(config-if-range)#switchport access vlan 40
