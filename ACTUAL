@@ -2,461 +2,10 @@
 
 PHILFIRST (COMMAND TRANSCRIPT) 
 
- 
-
-#SW1 CONFIGURATION 
-
- 
-
-Username: admin 
-
+ Username: admin 
 Password: 4d#1n*h1@f1r$7  
 
- 
-
-Conf t 
-
-SW1(config)#int vlan 1 
-
-SW1(config-if)#name MGMT_PORT 
-
-SW1(config-if)#exit 
-
-SW1(config)#int vlan 10 
-
-SW1(config-if)#name SERVER_ROOM 
-
-SW1(config-if)#exit 
-
-SW1(config)#int vlan 17 
-
-SW1(config-if)#name FORTIAP 
-
-SW1(config-if)#exit 
-
-SW1(config)#int vlan 20 
-
-SW1(config-if)#name AGENTS 
-
-SW1(config-if)#exit 
-
-SW1(config)#interface vlan 30 
-
-SW1(config-if)#name MIS_IT_ROOM 
-
-SW1(config-if)#exit  
-
-SW1(config)#int vlan 50 
-
-SW1(config-if)#name CISCO_AP 
-
-SW1(config-if)#ex 
-
-SW1(config)#interface vlan 60 
-
-SW1(config-if)#name IP_PHONE 
-
-SW1(config-if)#exit  
-
-SW1(config)#int vlan 70 
-
-SW1(config-if)#name MEETING_ROOM 
-
-SW1(config-if)#exit  
-
-SW1(config)#interface vlan 80 
-
-SW1(config-if)#name Executive_Room_123   
-
-SW1(config-if)#ex 
-
-SW1(config)#int vlan 40 
-
-SW1(config-if)#name OPERATION 
-
-SW1(config-if)#exit 
-
- 
-
-SW1(config-if)#int GigabitEthernet? 
-
-<1-28>  GigabitEthernet port number  
-
-SW1(config)#int GigabitEthernet 1    
-
-SW1(config-if)#switchport mode access  
-
-SW1(config-if)#switchport access vlan 1 
-
-SW1(config-if)#exit 
-
-SW1(config)#int GigabitEthernet 2-4 
-
-% bad parameter value 
-
-SW1(config)#int range GigabitEthernet 2-4 
-
-SW1(config-if-range)#switchport mode access  
-
-SW1(config-if-range)#switchport access vlan 80 
-
-SW1(config-if-range)#exit 
-
-SW1(config)#int GigabitEthernet 1 
-
-SW1(config-if)#switchport mode access  
-
-SW1(config-if)#switchport access vlan 1 
-
-SW1(config-if)#exit 
-
-SW1(config)#int range GigabitEthernet 5-7 
-
-SW1(config-if-range)#switchport mode access 
-
-SW1(config-if-range)#switchport access vlan 40 
-
-SW1(config-if-range)#end 
-
- 
-
-SW1#conf t 
-
-SW1(config)#int GigabitEthernet 20 
-
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100 
-
-SW1(config-if)#spanning-tree portfast 
-
-SW1(config)#SW1#conf t 
-
-% Unrecognized command 
-
-SW1(config)#SW1(config)#int GigabitEthernet 20 
-
-% Unrecognized command 
-
-SW1(config)                                                          
-
-SW1(config)# 
-
-SW1(config)#int GigabitEthernet 21 
-
-SW1(config-if)#switchport mode trunk  
-
-SW1(config-if)#switchport trunk vlan 10 
-
-% Incomplete command 
-
-SW1(config-if)#switchport trunk allowed vlan 10 
-
-SW1(config-if)#spanning-tree portfast 
-
-SW1(config-if)#exit 
-
-SW1(config)#int  
-
-SW1(config)#int GigabitEthernet 22 
-
-SW1(config-if)#switchport mode trunk  
-
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100 
-
-SW1(config-if)#description SW3_TRUNKPORT 
-
-SW1(config-if)#spanning-tree portfast 
-
-SW1(config-if)#exit 
-
-SW1(config)#int GigabitEthernet 20 
-
-SW1(config-if)#description SW2_TRUNKPORT 
-
-SW1(config-if)#exit 
-
-SW1(config)#interface GigabitEthernet21 
-
-SW1(config-if)#description SERVERFARM_TRUNKPORT 
-
-SW1(config-if)#exit 
-
-SW1(config)#interface GigabitEthernet23 
-
-SW1(config-if)#switchport mode trunk  
-
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100 
-
-SW1(config-if)#description FW_TRUNKPORT 
-
-SW1(config-if)#spanning-tree portfast 
-
-SW1(config-if)#exit 
-
-SW1(config)#interface GigabitEthernet24 
-
-SW1(config-if)#switchport mode trunk  
-
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100 
-
-SW1(config-if)#description SW4_TRUNKPORT 
-
-SW1(config-if)#spanning-tree portfast 
-
-SW1(config-if)# 
-
-SW1(config-if)#end 
-
-SW1#conf t 
-
-SW1(config)#int GigabitEthernet19 
-
-SW1(config-if)#switchport mode trunk  
-
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100 
-
-SW1(config-if)#spanning-tree portfast  
-
-SW1(config-if)#description FW_TRUNKPORT2 
-
-SW1(config-if)#end 
-
-SW1#wr mem 
-
-Overwrite file [startup-config].... (Y/N)[N] ?Y 
-
-Copy succeeded 
-
-##SW2 CONFIGURATION
-
-switchd265c6#conf t 
-
-switchd265c6(config)#hostname SW2 
-
-SW2(config)#int vlan 1 
-
-SW2(config-if)#name MGMT_PORT 
-
-SW2(config-if)#ex 
-
- 
-
-SW2(config)#int vlan 40 
-
-SW2(config-if)#name CCTV 
-
-SW2(config-if)#ex 
-
-SW2(config)#int vlan 60 
-
-SW2(config-if)#name IP_PHONES 
-
-SW2(config-if)#ex  
-
- 
-
-SW2(config)#int GigabitEthernet1 
-
-SW2(config-if-range)#switchport mode access  
-
-SW2(config-if-range)#switchport access vlan 1 
-
-SW2(config-if-range)#spanning-tree portfast  
-
-SW2(config-if-range)#description MGMT_PORT 
-
-SW2(config-if-range)#ex 
-
- 
-
-SW2(config)#int range GigabitEthernet2-19 
-
-SW2(config-if-range)#switchport mode access  
-
-SW2(config-if-range)#switchport access vlan 60 
-
-SW2(config-if-range)#spanning-tree portfast  
-
-SW2(config-if-range)#description IP_PHONES 
-
-SW2(config-if-range)#ex 
-
- 
-
-SW2(config)#int GigabitEthernet20 
-
-SW2(config-if-range)#switchport mode access  
-
-SW2(config-if-range)#switchport access vlan 40 
-
-SW2(config-if-range)#spanning-tree portfast  
-
-SW2(config-if-range)#description IP_PHONES 
-
-SW2(config-if-range)#ex 
-
- 
-
-SW2(config)#int range GigabitEthernet21-22 
-
-SW2(config-if-range)#shut  
-
-SW2(config-if-range)#ex 
-
- 
-
- 
-
-SW2(config)#int GigabitEthernet23 
-
-SW2(config-if-range)#switchport mode access  
-
-SW2(config-if-range)#switchport access vlan 60 
-
-SW2(config-if-range)#spanning-tree portfast  
-
-SW2(config-if-range)#description IP_PBX 
-
-SW2(config-if-range)#ex 
-
- 
-
-SW2(config)#int GigabitEthernet24 
-
-SW2(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100 
-
-SW2(config-if)#spanning-tree portfast  
-
-SW2(config-if)#description TRUNK_TO_SW1 
-
-SW2(config-if)#ex 
-
- 
-
-SW2#wr mem 
-
-Overwrite file [startup-config].... (Y/N)[N] ?Y 
-
-13-Jan-2025 17:44:57 %COPY-I-FILECPY: Files Copy - source URL running-config destination URL flash://system/configuration/startup-config 
-
-13-Jan-2025 17:44:59 %COPY-N-TRAP: The copy operation was completed successfully 
-
-Copy succeeded 
-
- ##SW3 CONFIGURATION
-
- 
-
-SW3#conf t 
-
-SW3(config)#int vlan 1 
-
-SW3(config-if)#name MGMT_PORT 
-
-SW3(config-if)#int vlan 50  
-
-SW3(config-if)#name CISCO_AP 
-
-SW3(config-if)#int vlan 60  
-
-SW3(config-if)#name VOICE 
-
-SW3(config-if)#int vlan 100 
-
-SW3(config-if)#name FORTIAP 
-
-SW3(config-if)#ex 
-
-SW3(config)#int GigabitEthernet1 
-
-SW3(config-if)#switchport mode access  
-
-SW3(config-if)#switchport access vlan 1 
-
-SW3(config-if)#spanning-tree portfast  
-
-SW3(config-if)#description MGMT_PORT 
-
-SW3(config-if)#ex 
-
-SW3(config)#int range GigabitEthernet2-6 
-
-SW3(config-if-range)#switchport mode access  
-
-SW3(config-if-range)#switchport access vlan 60 
-
-SW3(config-if-range)#spanning-tree portfast   
-
-SW3(config-if-range)#description IP_PHONE 
-
-SW3(config-if-range)#ex 
-
-SW3(config)#int range GigabitEthernet7-20 
-
-SW3(config-if-range)#switchport mode access  
-
-SW3(config-if-range)#switchport access vlan 50  
-
-SW3(config-if-range)#spanning-tree portfast  
-
-SW3(config-if-range)#description CISCO_AP 
-
-SW3(config-if-range)#ex 
-
-SW3(config)#int range GigabitEthernet21-22 
-
-SW3(config-if-range)#switchport mode access  
-
-SW3(config-if-range)#switchport access vlan 100 
-
-SW3(config-if-range)#spanning-tree portfast  
-
-SW3(config-if-range)#description FORTIAP 
-
-SW3(config-if-range)#ex 
-
-SW3(config)#int GigabitEthernet23 
-
-SW3(config-if)#shut 
-
-SW3(config-if)#ex 
-
-SW3(config)#int GigabitEthernet24 
-
-SW3(config-if)#sw 
-
-SW3(config-if)#switchport mode trunk  
-
-SW3(config-if)#switchport trunk vlan 1,10,20,30,40,50,60,70,80,100 
-
-% Incomplete command 
-
-SW3(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100 
-
-SW3(config-if)#spanning-tree portfast  
-
-SW3(config-if)#description TRUNK_TO_SW1 
-
-SW3(config-if)#ex 
-
-SW3(config)#ex 
-
- 
-
- 
-
-SW3#wr  
-
-Overwrite file [startup-config].... (Y/N)[N] ?Y 
-
-14-Jan-2025 09:42:12 %COPY-I-FILECPY: Files Copy - source URL running-config destination URL flash://system/configuration/startup-config 
-
-14-Jan-2025 09:42:15 %COPY-N-TRAP: The copy operation was completed successfully 
-
-Copy succeeded 
-
-
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 
 !!!PFIC Configuration UPDATED!!!!
 
@@ -521,13 +70,13 @@ SW1(config-if-range)#switchport access vlan 40
 SW1(config-if-range)#ex
 SW1(config)#int GigabitEthernet19 
 SW1(config-if)#switchport mode trunk  
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100,110,120,130,210
 SW1(config-if)#spanning-tree portfast  
 SW1(config-if)#description FW_TRUNKPORT2
 SW1(config)#int GigabitEthernet 20 
 SW1(config-if)#description SW2_TRUNKPORT 
 SW1(config-if)#switchport mode trunk
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100,110,120,130,210
 SW1(config-if)#spanning-tree portfast
 SW1(config-if)#exit 
 SW1(config)#int GigabitEthernet 21 
@@ -538,19 +87,19 @@ SW1(config-if)#spanning-tree portfast
 SW1(config-if)#exit 
 SW1(config)#int GigabitEthernet 22 
 SW1(config-if)#switchport mode trunk  
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100,110,120,130,210
 SW1(config-if)#description SW3_TRUNKPORT 
 SW1(config-if)#spanning-tree portfast 
 SW1(config-if)#exit 
 SW1(config)#interface GigabitEthernet23 
 SW1(config-if)#switchport mode trunk  
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100,110,120,130,210
 SW1(config-if)#description FW_TRUNKPORT 
 SW1(config-if)#spanning-tree portfast 
 SW1(config-if)#exit 
 SW1(config)#interface GigabitEthernet24 
 SW1(config-if)#switchport mode trunk  
-SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,110,120,130,210
+SW1(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100,110,120,130,210
 SW1(config-if)#description SW4_TRUNKPORT 
 SW1(config-if)#spanning-tree portfast 
 SW1(config-if)#end
@@ -563,4 +112,121 @@ Copy succeeded
 
 ##Switch 2 Configuration##
 
-hostname SW2
+switchd265c6#conf t 
+switchd265c6(config)#hostname SW2 
+SW2(config)#int vlan 1 
+SW2(config-if)#name MGMT_PORT 
+SW2(config-if)#ex 
+SW2(config)#int vlan 40 
+SW2(config-if)#name CCTV 
+SW2(config-if)#ex 
+SW2(config)#int vlan 60 
+SW2(config-if)#name IP_PHONES 
+SW2(config-if)#ex  
+
+SW2(config)#int GigabitEthernet1 
+SW2(config-if-range)#switchport mode access  
+SW2(config-if-range)#switchport access vlan 1 
+SW2(config-if-range)#spanning-tree portfast  
+SW2(config-if-range)#description MGMT_PORT 
+SW2(config-if-range)#ex 
+SW2(config)#int range GigabitEthernet2-19 
+SW2(config-if-range)#switchport mode access  
+SW2(config-if-range)#switchport access vlan 60 
+SW2(config-if-range)#spanning-tree portfast  
+SW2(config-if-range)#description IP_PHONES 
+SW2(config-if-range)#ex 
+SW2(config)#int GigabitEthernet20 
+SW2(config-if-range)#switchport mode access  
+SW2(config-if-range)#switchport access vlan 40 
+SW2(config-if-range)#spanning-tree portfast  
+SW2(config-if-range)#description IP_PHONES 
+SW2(config-if-range)#ex 
+SW2(config)#int range GigabitEthernet21-22 
+SW2(config-if-range)#shut  
+SW2(config-if-range)#ex 
+SW2(config)#int GigabitEthernet23 
+SW2(config-if-range)#switchport mode access  
+SW2(config-if-range)#switchport access vlan 60 
+SW2(config-if-range)#spanning-tree portfast  
+SW2(config-if-range)#description IP_PBX 
+SW2(config-if-range)#ex 
+SW2(config)#int GigabitEthernet24 
+SW2(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100,110,120,130,210
+SW2(config-if)#spanning-tree portfast  
+SW2(config-if)#description TRUNK_TO_SW1 
+SW2(config-if)#ex 
+SW2#wr mem 
+Overwrite file [startup-config].... (Y/N)[N] ?Y 
+Copy succeeded 
+
+================================================================================================
+
+##Switch 3 Configuration
+
+SW3#conf t 
+SW3(config)#int vlan 1 
+SW3(config-if)#name MGMT_PORT 
+SW3(config-if)#int vlan 50  
+SW3(config-if)#name CISCO_AP 
+SW3(config-if)#int vlan 60  
+SW3(config-if)#name VOICE 
+SW3(config-if)#int vlan 100 
+SW3(config-if)#name FORTIAP 
+SW3(config-if)#ex 
+SW3(config)#int vlan 110
+SW3(config-if)#name CISCOAP_OPERATION
+SW3(config-if)#int vlan 120
+SW3(config-if)#name PhilFirst_OPS
+SW3(config-if)#int vlan 130 
+SW3(config-if)#name GUEST
+SW3(config-if)#int vlan 150
+SW3(config-if)#name CSCOVLAN_150
+SW3(config-if)#ex 
+SW3(config-if)#int vlan 210
+SW3(config-if)#name FORTIAP2
+SW3(config-if)#ex 
+
+SW3(config)#int GigabitEthernet1 
+SW3(config-if)#switchport mode access  
+SW3(config-if)#switchport access vlan 1 
+SW3(config-if)#spanning-tree portfast  
+SW3(config-if)#description MGMT_PORT 
+SW3(config-if)#ex 
+SW3(config)#int range GigabitEthernet2-6 
+SW3(config-if-range)#switchport mode access  
+SW3(config-if-range)#switchport access vlan 60 
+SW3(config-if-range)#spanning-tree portfast   
+SW3(config-if-range)#description IP_PHONE 
+SW3(config-if-range)#ex 
+SW3(config)#int range GigabitEthernet7-20 
+SW3(config-if-range)#switchport mode access  
+SW3(config-if-range)#switchport access vlan 110 
+SW3(config-if-range)#spanning-tree portfast  
+SW3(config-if-range)#description CISCO_AP 
+SW3(config-if-range)#ex 
+SW3(config)#int range GigabitEthernet21-22 
+SW3(config-if-range)#switchport mode trunk 
+SW3(config-if-range)#switchport trunk native vlan 210
+SW3(config-if-range)#switchport trunk allow vlan 210
+SW3(config-if-range)#spanning-tree portfast  
+SW3(config-if-range)#description FORTIAP2 
+SW3(config-if-range)#ex 
+SW3(config)#int GigabitEthernet23 
+SW3(config-if)#switchport mode trunk
+SW3(config-if)#switchport trunk native vlan 110
+SW3(config-if)#switchport trunk allowed vlan 110,120,130
+SW3(config-if)#spanning-tree portfast
+SW3(config-if)#description CBW150AX
+SW3(config-if)#ex 
+SW3(config)#int GigabitEthernet24 
+SW3(config-if)#switchport mode trunk  
+SW3(config-if)#switchport trunk allowed vlan 1,10,20,30,40,50,60,70,80,100,110,120,130,210
+SW3(config-if)#spanning-tree portfast  
+SW3(config-if)#description TRUNK_TO_SW1 
+SW3(config-if)#end
+SW3#wr mem 
+
+Overwrite file [startup-config].... (Y/N)[N] ?Y 
+Copy succeeded 
+
